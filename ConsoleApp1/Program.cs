@@ -8,6 +8,7 @@
             int playerHealth = 10;
             int playerwealth = 10;
 
+            // Pelaaja käy kaupassa
         }
     }
 }
