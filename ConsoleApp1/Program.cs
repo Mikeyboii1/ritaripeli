@@ -1,4 +1,4 @@
-﻿namespace ConsoleApp1
+﻿namespace ritari.peli
 {
     internal class Program
     {
