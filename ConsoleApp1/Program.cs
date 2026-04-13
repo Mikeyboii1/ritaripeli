@@ -4,7 +4,10 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            // Kaksi kokonaislukua (integer)
+            int playerHealth = 10;
+            int playerwealth = 10;
+
         }
     }
 }
