@@ -1,4 +1,4 @@
-﻿namespace ritari.peli
+﻿namespace RitariPeli
 {
     internal class Program
     {
@@ -17,6 +17,7 @@
             Console.WriteLine("4 Käytä repussa olevia esineitä");
 
             // Pelaaja voi vierailla kaupassa, josta voi ostaa ruokaa. Ruoka lisää osumapisteitä.
+            
         }
     }
 }
