@@ -16,8 +16,9 @@
             Console.WriteLine("3 Lähde taisteluun");
             Console.WriteLine("4 Käytä repussa olevia esineitä");
 
-            // Pelaaja voi vierailla kaupassa, josta voi ostaa ruokaa. Ruoka lisää osumapisteitä.
-            
+            // Pelaaja voi kirjoittaa valintansa, ja ohjelma reagoi siihen.
+            string choice = Console.ReadLine();
+
         }
     }
 }

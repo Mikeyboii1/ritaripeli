@@ -45,6 +45,7 @@ namespace Ritaripeli
                 else
                 {
                     Console.WriteLine("Sinulla ei ole tarpeeksi kultarahaa ostamaan nuolia.");
+
             }
         }
     }
