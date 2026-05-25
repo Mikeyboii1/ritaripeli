@@ -1,51 +1,59 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using RitariPeli;
 
-namespace Ritaripeli
+namespace RitariPeli
 {
-    internal class Kauppa
+    internal class Shop
     {
-        // Kauppa-luokka, jossa pelaaja voi ostaa ruokaa
-        public void OstaRuoka(Player player)
-            {
-                int ruoanHinta = 5;
-                if (player.currentWealth >= ruoanHinta)
-                {
-                    player.currentWealth -= ruoanHinta;
-                    player.currentHealth += 5; // Ruoka lisää osumapisteitä
-                    Console.WriteLine("Ostit ruokaa! Osumapisteesi lisääntyivät.");
-                }
-                else
-                {
-                    Console.WriteLine("Sinulla ei ole tarpeeksi kultarahaa ostamaan ruokaa.");
-                }
-            // voit ostaa myös parempia aseita ja nuolia, mutta se vaatii enemmän kultaa ja lisää osumapisteitä
-            int aseenHinta = 10;
-            if (player.currentWealth >= aseenHinta)
-            {
-                player.currentWealth -= aseenHinta;
-                player.currentHealth += 10; // Ase lisää osumapisteitä
-                Console.WriteLine("Ostit paremman aseen! Osumapisteesi lisääntyivät.");
-            }
-            else
-            {
-                Console.WriteLine("Sinulla ei ole tarpeeksi kultarahaa ostamaan parempaa asetta.");
-            }
-                int nuolienHinta = 3;
-                if (player.currentWealth >= nuolienHinta)
-                {
-                    player.currentWealth -= nuolienHinta;
-                    player.currentHealth += 3; // Nuoli lisää osumapisteitä
-                    Console.WriteLine("Ostit nuolia! Osumapisteesi lisääntyivät.");
-                }
-                else
-                {
-                    Console.WriteLine("Sinulla ei ole tarpeeksi kultarahaa ostamaan nuolia.");
+        private List<Item> items = new List<Item>();
 
+        public Shop()
+        {
+            items.Add(new Arrow("Perusnuoli", 3, 2));
+            items.Add(new Arrow("Hieno nuoli", 10, 5));
+
+            items.Add(new Food("Leipä", 5, 5));
+
+            items.Add(new Weapon("Kirves", 15, 5));
+        }
+
+        public void OpenShop(Player player)
+        {
+            bool running = true;
+
+            while (running)
+            {
+                Console.WriteLine("\nKaupan tavarat:");
+
+                for (int i = 0; i < items.Count; i++)
+                {
+                    Console.WriteLine($"{i + 1}: {items[i].Name} {items[i].Price} kr");
+                }
+
+                Console.WriteLine("0: Poistu");
+
+                Console.Write("> ");
+                int choice = int.Parse(Console.ReadLine());
+
+                if (choice == 0)
+                {
+                    running = false;
+                    continue;
+                }
+
+                Item selectedItem = items[choice - 1];
+
+                if (player.Gold >= selectedItem.Price)
+                {
+                    player.Gold -= selectedItem.Price;
+                    player.Backpack.Add(selectedItem);
+
+                    Console.WriteLine($"Ostit tavaran {selectedItem.Name}");
+                }
+                else
+                {
+                    Console.WriteLine("Ei tarpeeksi kultaa.");
+                }
             }
         }
     }

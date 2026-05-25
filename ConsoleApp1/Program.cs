@@ -4,22 +4,57 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Tervetuloa seikkailuun!");
-            // Pelin alussa ritarilla on vain miekka,10 kultarahaa ja 10 osumapistettä.
-            int playerHealth = 10;
-            int playerWealth = 10;
-            Console.WriteLine($"Tilanne: Sinulla on {playerHealth} osumapistettä ja {playerWealth} kultarahaa.");
+            Player player = new Player();
 
-            Console.WriteLine("Valitse toiminto:");
-            Console.WriteLine("1 Mene nuolikauppaan");
-            Console.WriteLine("2 Mene ravintolaan");
-            Console.WriteLine("3 Lähde taisteluun");
-            Console.WriteLine("4 Käytä repussa olevia esineitä");
+            Shop shop = new Shop();
 
-            // Pelaaja voi kirjoittaa valintansa, ja ohjelma reagoi siihen.
-            string choice = Console.ReadLine();
+            Battle battle = new Battle();
 
+            bool gameRunning = true;
+
+            Console.WriteLine("Tervetuloa suureen seikkailuun!");
+
+            while (gameRunning)
+            {
+                player.ShowStatus();
+
+                Console.WriteLine("\nValitse toiminto:");
+                Console.WriteLine("1 Mene kauppaan");
+                Console.WriteLine("2 Lähde taisteluun");
+                Console.WriteLine("3 Näytä reppu");
+                Console.WriteLine("4 Lopeta peli");
+
+                Console.Write("> ");
+
+                string choice = Console.ReadLine();
+
+                switch (choice)
+                {
+                    case "1":
+                        shop.OpenShop(player);
+                        break;
+
+                    case "2":
+                        battle.StartBattle(player);
+
+                        if (player.Health <= 0)
+                        {
+                            gameRunning = false;
+                        }
+
+                        break;
+
+                    case "3":
+                        player.ShowInventory();
+                        break;
+
+                    case "4":
+                        gameRunning = false;
+                        break;
+                }
+            }
+
+            Console.WriteLine("Peli päättyi.");
         }
     }
 }
-
